@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFeild extends StatefulWidget {
-  const CustomTextFeild({super.key});
+  TextEditingController appName;
+  TextEditingController publisherName;
+
+  CustomTextFeild({required this.appName, required this.publisherName});
 
   @override
   State<CustomTextFeild> createState() => _CustomTextFeildState();
@@ -16,34 +19,45 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
         width: double.infinity,
         child: Column(
           children: [
-            TextField(
-              style: const TextStyle(color: Colors.white),
+            TextFormField(
+              controller: widget.appName,
               decoration: InputDecoration(
-                fillColor: Colors.white,
-                border: const OutlineInputBorder(borderSide: BorderSide()),
                 hintText: 'Name config',
                 labelText: 'Name config',
                 prefixIcon: Icon(
                   Icons.app_shortcut_outlined,
                   color: Colors.red.shade600,
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                ),
               ),
             ),
+           
             const SizedBox(
               height: 10,
             ),
-            TextField(
-              style: const TextStyle(color: Colors.white),
+            TextFormField(
+              controller: widget.publisherName,
               decoration: InputDecoration(
-                border: const OutlineInputBorder(borderSide: BorderSide()),
                 hintText: 'Publisher config',
                 labelText: 'Publisher config',
                 prefixIcon: Icon(
                   Icons.person,
                   color: Colors.red.shade600,
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                ),
               ),
             ),
+          
           ],
         ),
       ),

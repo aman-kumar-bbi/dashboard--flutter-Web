@@ -1,105 +1,75 @@
-import 'package:dashboard/dashboard/domain/useCases/ButtonFunction.dart';
+import 'package:dashboard/dashboard/data/models/app_details_model.dart';
+
 import 'package:dashboard/dashboard/presentation/widgets/constant/check_boxes.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/constant_text.dart';
 import 'package:dashboard/dashboard/presentation/widgets/constant/custom_textfeild.dart';
 import 'package:dashboard/dashboard/presentation/widgets/constant/drop_downs.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/logo_and_name.dart';
+import 'package:dashboard/dashboard/presentation/widgets/constant/new_custom_save_and_delete_button.dart';
 import 'package:dashboard/dashboard/presentation/widgets/constant/title_text_on_add_app_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/materialUi.dart';
+
+import '../../data/repository/FirebaseFunction.dart';
 
 class AddAppScreen extends StatefulWidget {
-  const AddAppScreen({super.key});
+  TextEditingController appName;
+  TextEditingController publisherName;
+  String seletedRegion;
+
+  AddAppScreen(
+      {required this.appName,
+      required this.publisherName,
+      required this.seletedRegion});
 
   @override
   State<AddAppScreen> createState() => _AddAppScreenState();
 }
 
+late String checkAndroid;
+late String checkIos;
+late String checkWeb;
+// String regionValue = '';
+// String regionValueTest = 'Europe';
+String languageValue = '';
+String languageValueTest = 'English';
+
 class _AddAppScreenState extends State<AddAppScreen> {
+  final TextEditingController androidTextEditingController =
+      TextEditingController();
+  final TextEditingController iosTextEditingController =
+      TextEditingController();
+  final TextEditingController webTextEditingController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipPath(
-              clipper: MyClipper(),
-              child: Container(
-                color: Colors.deepPurple,
-              )
-            ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const LogoAndName(),
-              const CustomTextFeild(),
-              TitleText(CustomText: ConstText().app_Region),
-              CustomDropDown(),
-              TitleText(CustomText: ConstText().app_Language),
-              dropDown(),
-              const CheckBoxes(),
-              // customButtom(),
-              // const SizedBox(
-              //   height: 20,
-              // )
-            ],
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextFeild(
+            appName: widget.appName,
+            publisherName: widget.publisherName,
+          ),
+
+          CheckBoxes(
+            androidTextEditingController: androidTextEditingController,
+            iosTextEditingController: iosTextEditingController,
+            webTextEditingController: webTextEditingController,
+          ),
+          NewCustomButon(
+            appName: widget.appName,
+            publisherName: widget.publisherName,
+            selectedRegion: widget.seletedRegion,
+            selectedLanguage: languageValueTest,
+            androidTextEditingController: androidTextEditingController,
+            iosTextEditingController: iosTextEditingController,
+            webTextEditingController: webTextEditingController,
           ),
         ],
       ),
     );
-  }
-
-  Widget dropDown() {
-    String dropdownValue = "German";
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: double.infinity,
-        child: DropdownButton<String>(
-          value: dropdownValue,
-          icon: Icon(
-            Icons.arrow_downward,
-            color: Colors.red.shade600,
-          ),
-          elevation: 16,
-          style: TextStyle(color: Colors.red.shade600),
-          underline: Container(height: 2, color: Colors.red.shade600),
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
-          },
-          items: <String>["German", "English"]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        ),
-      ),
-    );
-  }
-
-  Widget customButtom() {
-    return Positioned(
-        child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        ElevatedButton(
-            onPressed: () {
-              ButtonFunction().cancelButtonFunction(context);
-            },
-            child: const Text("Cancel")),
-        ElevatedButton(
-            onPressed: () {
-              ButtonFunction().saveButtonFunction(context);
-            },
-            child: const Text("Save"))
-      ],
-    ));
   }
 }

@@ -40,6 +40,7 @@ dependencies:
   expandable: ^5.0.1
   firebase_core: ^1.21.0
   firebase_database: ^9.1.2
+  cloud_firestore: ^3.4.5
 
 
 

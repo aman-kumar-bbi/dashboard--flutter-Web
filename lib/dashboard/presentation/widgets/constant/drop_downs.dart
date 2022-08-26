@@ -3,38 +3,25 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class CustomDropDown extends StatefulWidget {
-  // final String  dropdownValue;
-  // List dropDownListValue;
-  // CustomDropDown({t});
-  // final bool isregion;
-  // CustomDropDown({required this.isregion});
+  final Function(String)? onChanged;
+  String defaultValue;
+  List<String> particularList;
+  CustomDropDown({super.key, required this.defaultValue, required this.onChanged,required this.particularList});
   @override
   State<CustomDropDown> createState() => CustomDropDownState();
 }
 
 class CustomDropDownState extends State<CustomDropDown> {
-  String dropdownValue="Europe";
-  // late List<String> listOfValue;
+
   @override
   Widget build(BuildContext context) {
-    // if (widget.isregion == true) {
-    //   setState(() {
-    //     dropdownValue = 'Europe';
-    //     listOfValue=["Europe","USA"];
-    //   });
-    // } else {
-    //   setState(() {
-    //     dropdownValue = 'Europe';
-    //     listOfValue=["Germanm,English"];
-    //   });
-    // }
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         width: double.infinity,
         child: DropdownButton<String>(
-          value: dropdownValue,
+          value: widget.defaultValue,
           icon: Icon(
             Icons.arrow_downward,
             color: Colors.red.shade600,
@@ -44,10 +31,13 @@ class CustomDropDownState extends State<CustomDropDown> {
           underline: Container(height: 2, color: Colors.red.shade600),
           onChanged: (String? newValue) {
             setState(() {
-              dropdownValue = newValue!;
+              widget.defaultValue = newValue!;
             });
+            if (widget.onChanged != null) {
+              widget.onChanged!(newValue!);
+            }
           },
-          items: <String>["Europe","USA"]
+          items: widget.particularList
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
