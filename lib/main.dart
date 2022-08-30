@@ -1,4 +1,6 @@
 
+import 'package:dashboard/dashboard/presentation/screen/login_page.dart';
+import 'package:dashboard/dashboard/presentation/screen/wrapper.dart';
 import 'package:dashboard/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +21,11 @@ class MyApp extends StatelessWidget {
     
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'BB dashboard',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  Home(),
+      home:  Wrapper(),
     );
   }
 }

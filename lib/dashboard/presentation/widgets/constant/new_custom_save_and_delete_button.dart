@@ -90,39 +90,39 @@ import '../../../domain/useCases/button_function.dart';
 //                 const SizedBox(
 //                   width: 10,
 //                 ),
-//                 OutlinedButton(
-//                   onPressed: () {
-//                     ButtonFunction().cancelButtonFunction(context);
-//                   },
-//                   child: Text('Cancel'),
-//                   style: OutlinedButton.styleFrom(
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(
-//                         8,
-//                       ),
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             ),
-//             OutlinedButton(
-//               onPressed: () async {
-//                 await FirebaseFunctions().delFunction(widget.uid!);
-//                 setState(() {
-//                   ButtonFunction().cancelButtonFunction(context);
-//                 });
-//               },
-//               style: OutlinedButton.styleFrom(
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(
-//                     8,
-//                   ),
-//                 ),
-//               ),
-//               child: const Text(
-//                 'Delete',
-//                 style: TextStyle(color: Colors.red),
-//               ),
+//     OutlinedButton(
+//       onPressed: () {
+//         ButtonFunction().cancelButtonFunction(context);
+//       },
+//       child: Text('Cancel'),
+//       style: OutlinedButton.styleFrom(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(
+//             8,
+//           ),
+//         ),
+//       ),
+//     )
+//   ],
+// ),
+// OutlinedButton(
+//   onPressed: () async {
+//     await FirebaseFunctions().delFunction(widget.uid!);
+//     setState(() {
+//       ButtonFunction().cancelButtonFunction(context);
+//     });
+//   },
+//   style: OutlinedButton.styleFrom(
+//     shape: RoundedRectangleBorder(
+//       borderRadius: BorderRadius.circular(
+//         8,
+//       ),
+//     ),
+//   ),
+//   child: const Text(
+//     'Delete',
+//     style: TextStyle(color: Colors.red),
+//   ),
 //             )
 //           ],
 //         ),
@@ -142,20 +142,41 @@ class SaveButton extends StatelessWidget {
 }
 
 class CancelButton extends StatelessWidget {
-    final Function()? onPressed;
+  final Function()? onPressed;
   const CancelButton({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, child: Text("Cancel"));
+    return OutlinedButton(
+      onPressed: onPressed,
+      child: Text("Cancel"),
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            8,
+          ),
+        ),
+      ),
+    );
   }
 }
+
 class DeleteButton extends StatelessWidget {
-    final Function()? onPressed;
+  final Function()? onPressed;
   const DeleteButton({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, child: Text("Delete"));
+    return OutlinedButton(
+      onPressed: onPressed,
+      child: Text("Delete",style: TextStyle(color: Colors.red),),
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            8,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -15,7 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   @override
   void initState() {
     widget.rebuild == true ? setState(() {}) : null;
@@ -38,6 +37,13 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
+          actions: [
+            IconButton(
+                onPressed: () async {
+                  await FirebaseFunctions().signOut();
+                },
+                icon: const Icon(Icons.logout_outlined))
+          ],
         ),
         body: Center(
           child: Column(
@@ -55,10 +61,9 @@ class _HomeState extends State<Home> {
                     return const Center(
                         child: Center(child: CircularProgressIndicator()));
                   } else {
-                    return Empty(
-
-                        // appDetails: snapshot.data!,
-                        );
+                    return IfHaveData(
+                      appDetails: snapshot.data,
+                    );
                   }
                 },
               ),

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dashboard/dashboard/data/models/app_details_model.dart';
 import 'package:dashboard/dashboard/data/repository/FirebaseFunction.dart';
 import 'package:dashboard/dashboard/presentation/screen/home.dart';
@@ -102,12 +100,13 @@ class _AddAppScreenState extends State<AddAppScreen> {
                           publisherName:
                               publishernameTextEditingController.text,
                           region: widget.regionName,
-                          language: "",
+                          
                           platform: platforms),
                     );
                   }
                 },
               ),
+              const SizedBox(width: 10,),
               CancelButton(
                 onPressed: () => Navigator.pop(
                   context,
@@ -117,10 +116,7 @@ class _AddAppScreenState extends State<AddAppScreen> {
               DeleteButton(onPressed: () async {
                 await FirebaseFunctions().delFunction(widget.appDetails!.uid);
 
-                // Navigator.pushReplacement(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Home(rebuild: true,)),
-                // );
+              
 
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => Home(rebuild: true,)),

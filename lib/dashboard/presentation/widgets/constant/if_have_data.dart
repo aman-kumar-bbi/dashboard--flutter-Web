@@ -1,12 +1,11 @@
 import 'package:dashboard/dashboard/domain/useCases/filter_data.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/if_data_is_empty.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/app_details_model.dart';
 import '../../../domain/useCases/button_function.dart';
 
 class IfHaveData extends StatefulWidget {
-  List<AppDetails> appDetails;
+  List<AppDetails>? appDetails;
   IfHaveData({
     required this.appDetails,
   });
@@ -34,14 +33,17 @@ class _IfHaveDataState extends State<IfHaveData> {
               eachRegionBox(
                 context,
                 "German Apps",
+                "DE"
               ),
               eachRegionBox(
                 context,
                 "European Apps",
+                "EU"
               ),
               eachRegionBox(
                 context,
                 "American Apps",
+                "US"
               )
             ],
           )),
@@ -50,8 +52,11 @@ class _IfHaveDataState extends State<IfHaveData> {
     );
   }
 
-  Widget eachRegionBox(BuildContext context, String regionName) {
-    final filteredList = filterData(widget.appDetails, regionName);
+  Widget eachRegionBox(BuildContext context, String regionName,String appLanguage) {
+    List filteredList=[];
+    if (widget.appDetails!=null) {
+     filteredList = filterData(widget.appDetails!, appLanguage);
+    }
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height - 72;
     return SizedBox(
@@ -68,7 +73,7 @@ class _IfHaveDataState extends State<IfHaveData> {
                 TextButton(
                     onPressed: () {
                       ButtonFunction().homeFloatingActionButton(
-                          "Save", context, regionName, null);
+                          "Save", context, appLanguage, null);
                     },
                     child: const Text("Add New"))
               ],

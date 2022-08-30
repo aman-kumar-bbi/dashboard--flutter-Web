@@ -5,7 +5,7 @@ class AppDetails {
   String appName;
   String publisherName;
   String region;
-  String language;
+
   List<BBPlatform> platform;
 
   AppDetails({
@@ -13,7 +13,7 @@ class AppDetails {
     required this.appName,
     required this.publisherName,
     required this.region,
-    required this.language,
+
     required this.platform,
   });
 
@@ -21,7 +21,7 @@ class AppDetails {
       : appName = json['appName'],
         publisherName = json['publisherName'],
         region = json['region'],
-        language = json['language'],
+
         platform = (json['platform'] as List)
             .map((e) => BBPlatform.fromJson(e))
             .toList();
@@ -31,7 +31,7 @@ class AppDetails {
         'appName': appName,
         'publisherName': publisherName,
         'region': region,
-        'language': language,
+
         'platform': platform.map((e) => e.toJson()).toList(),
       };
 }
