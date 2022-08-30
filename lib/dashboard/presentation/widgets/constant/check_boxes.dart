@@ -1,13 +1,15 @@
-import 'package:dashboard/dashboard/domain/useCases/button_function.dart';
-import 'package:dashboard/dashboard/presentation/screen/add_app_screen.dart';
 import 'package:flutter/material.dart';
 
 class CheckBoxes extends StatefulWidget {
- final TextEditingController androidTextEditingController;
+  final TextEditingController androidTextEditingController;
   final TextEditingController iosTextEditingController;
-   final TextEditingController webTextEditingController;
+  final TextEditingController webTextEditingController;
 
-  const CheckBoxes({super.key, required this.androidTextEditingController, required this.iosTextEditingController, required this.webTextEditingController});
+  const CheckBoxes(
+      {super.key,
+      required this.androidTextEditingController,
+      required this.iosTextEditingController,
+      required this.webTextEditingController});
   @override
   State<CheckBoxes> createState() => _CheckBoxesState();
 }
@@ -20,7 +22,6 @@ bool isiOSLink = false;
 bool isWebAppLink = false;
 
 class _CheckBoxesState extends State<CheckBoxes> {
-  
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -37,7 +38,6 @@ class _CheckBoxesState extends State<CheckBoxes> {
                   if (isAndroid == true) {
                     setState(() {
                       isAndroidLink = true;
-                    
                     });
                   } else {
                     isAndroidLink = false;
@@ -47,12 +47,10 @@ class _CheckBoxesState extends State<CheckBoxes> {
           isAndroidLink == true
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 35,
+                  child: SizedBox(
+                    height: 45,
                     child: TextFormField(
-                      
-                      controller: widget.androidTextEditingController,
-                      decoration: InputDecoration(hintText: "Playstore Link"),
+                      autofocus: true,
                       validator: (value) {
                         if (value == "") {
                           setState(() {
@@ -60,6 +58,17 @@ class _CheckBoxesState extends State<CheckBoxes> {
                           });
                         }
                       },
+                      controller: widget.androidTextEditingController,
+                      decoration: const InputDecoration(
+                        hintText: 'App store link',
+                        labelText: 'App store link',
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(),
+                        ),
+                        enabledBorder:  OutlineInputBorder(
+                          borderSide: BorderSide(width: 0.5),
+                        ),
+                      ),
                     ),
                   ),
                 )
@@ -82,19 +91,36 @@ class _CheckBoxesState extends State<CheckBoxes> {
               }),
           isiOSLink == true
               ? Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    height: 35,
+                    height: 45,
                     child: TextFormField(
+                      autofocus: true,
+                      validator: (value) {
+                        if (value == "") {
+                          setState(() {
+                            isAndroid = false;
+                          });
+                        }
+                      },
                       controller: widget.iosTextEditingController,
-                      decoration: InputDecoration(hintText: "App Store Link"),
+                      decoration: const InputDecoration(
+                        hintText: 'App store link',
+                        labelText: 'App store link',
+                        focusedBorder:  OutlineInputBorder(
+                          borderSide: BorderSide(),
+                        ),
+                        enabledBorder:  OutlineInputBorder(
+                          borderSide: BorderSide(width: 0.5),
+                        ),
+                      ),
                     ),
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
           CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
-              title: Text("Web"),
+              title: const Text("Web"),
               value: isWebApp,
               onChanged: (val) {
                 setState(() {
@@ -111,20 +137,34 @@ class _CheckBoxesState extends State<CheckBoxes> {
           isWebAppLink == true
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 35,
-                    child: TextFormField(
+                  child: SizedBox(
+                    height: 45,
+                    child:  TextFormField(
+                      autofocus: true,
+                      validator: (value) {
+                        if (value == "") {
+                          setState(() {
+                            isAndroid = false;
+                          });
+                        }
+                      },
                       controller: widget.webTextEditingController,
-                      decoration: InputDecoration(hintText: "App Link"),
+                      decoration: const InputDecoration(
+                        hintText: 'App store link',
+                        labelText: 'App store link',
+                        focusedBorder:  OutlineInputBorder(
+                          borderSide: BorderSide(),
+                        ),
+                        enabledBorder:  OutlineInputBorder(
+                          borderSide: BorderSide(width: 0.5),
+                        ),
+                      ),
                     ),
                   ),
                 )
               : SizedBox(),
-
         ],
       ),
     ));
   }
-
- 
 }

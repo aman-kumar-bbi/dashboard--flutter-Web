@@ -1,6 +1,7 @@
 import 'dart:core';
 
 class AppDetails {
+  String uid;
   String appName;
   String publisherName;
   String region;
@@ -8,6 +9,7 @@ class AppDetails {
   List<BBPlatform> platform;
 
   AppDetails({
+    required this.uid,
     required this.appName,
     required this.publisherName,
     required this.region,
@@ -15,7 +17,7 @@ class AppDetails {
     required this.platform,
   });
 
-  AppDetails.fromJson(Map<String, dynamic> json)
+  AppDetails.fromJson(this.uid, Map<String, dynamic> json)
       : appName = json['appName'],
         publisherName = json['publisherName'],
         region = json['region'],
@@ -25,6 +27,7 @@ class AppDetails {
             .toList();
 
   Map<String, dynamic> toJson() => {
+        
         'appName': appName,
         'publisherName': publisherName,
         'region': region,

@@ -5,14 +5,14 @@ import 'package:dashboard/dashboard/presentation/screen/home.dart';
 import 'package:flutter/material.dart';
 
 class ButtonFunction {
-  void cancelButtonFunction(BuildContext context) {
+  Future? cancelButtonFunction(BuildContext context) async {
     Navigator.pop(
       context,
     );
   }
 
-  homeFloatingActionButton(BuildContext context, TextEditingController appName,
-      TextEditingController publisherName, String selectedRegion) {
+  homeFloatingActionButton(String buttonName, BuildContext context,
+      String region, AppDetails? appDetails) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -21,9 +21,9 @@ class ButtonFunction {
           width: 650,
           height: 700,
           child: AddAppScreen(
-            appName: appName,
-            publisherName: publisherName,
-            seletedRegion: selectedRegion,
+            buttonName: buttonName,
+            appDetails: appDetails,
+            regionName: region,
           ),
         ),
       ),
@@ -34,14 +34,14 @@ class ButtonFunction {
     BuildContext context,
     AppDetails appDetails,
   ) async {
-    await FirebaseFunctions().setData(appDetails);
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-          builder: (context) => Home(
-                rebuild: true,
-              )),
-    );
+    appDetails.uid == ""
+        ? await FirebaseFunctions().setData(appDetails)
+        : await FirebaseFunctions().updateData(appDetails);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+            builder: (context) => Home(
+                  rebuild: true,
+                )),
+        (Route route) => false);
   }
 }

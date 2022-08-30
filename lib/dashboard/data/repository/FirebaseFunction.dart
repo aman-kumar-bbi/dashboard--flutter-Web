@@ -7,7 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 class FirebaseFunctions {
   final fb = FirebaseDatabase.instance;
   Future? setData(AppDetails details) {
-    print(details.toJson());
+    
     final ref = fb.ref().child('bb_apps');
     ref
         .push()
@@ -18,6 +18,18 @@ class FirebaseFunctions {
     return null;
   }
 
+  Future delFunction(String uid) async {
+    await FirebaseDatabase.instance.ref().child("bb_apps").child(uid).remove();
+  }
+
+  Future? updateData(AppDetails details) {
+    print("updating new data");
+    var databaseReference = FirebaseDatabase.instance
+        .ref("bb_apps")
+        .child(details.uid)
+        .update(details.toJson());
+  }
+
   Future<List<AppDetails>?> fetchData() async {
     DatabaseReference ref = FirebaseDatabase.instance.ref("bb_apps").ref;
 
@@ -25,10 +37,10 @@ class FirebaseFunctions {
     print("final event ${event.snapshot.value}");
     final bbAppJson = event.snapshot.value;
     List<AppDetails>? listOfAppDetails;
-    if (bbAppJson is List) {
-      listOfAppDetails = bbAppJson.map((e) => AppDetails.fromJson(e)).toList();
-    }else if(bbAppJson is Map){
-      listOfAppDetails=bbAppJson.entries.map((e) => AppDetails.fromJson(e.value)).toList();
+    if (bbAppJson is Map) {
+      listOfAppDetails = bbAppJson.entries
+          .map((e) => AppDetails.fromJson(e.key, e.value))
+          .toList();
     }
     return listOfAppDetails;
   }

@@ -5,11 +5,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../../domain/useCases/button_function.dart';
 
 class Empty extends StatelessWidget {
-  TextEditingController appName;
-  TextEditingController publisherName;
+
 
   // List<AppDetails> appDetails;
-  Empty({required this.appName, required this.publisherName});
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +26,40 @@ class Empty extends StatelessWidget {
               const Text("Lets get started by adding some items here !"),
               ElevatedButton(
                   onPressed: () {
-                    ButtonFunction().homeFloatingActionButton(
-                        context, appName, publisherName, "European Apps");
+                    ButtonFunction().homeFloatingActionButton("Save",
+                        context, "European Apps",null);
                   },
                   child: Text("Add App"))
             ],
           ),
         )
       ],
-      // floatingActionButton: FloatingActionButton(
-      //     onPressed: () {
-      // ButtonFunction().homeFloatingActionButton(
-      //     context, appName, publisherName, "European Apps");
-      //     },
-      //     backgroundColor: Colors.red[600],
-      //     child: const Icon(Icons.add),
-      //   ),
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+
+// import '../../../domain/useCases/button_function.dart';
+
+// class Empty extends StatelessWidget {
+//   BuildContext Pcontext;
+//   Empty({required this.Pcontext});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     print("empty");
+//     double height = MediaQuery.of(Pcontext).size.height;
+//     return Container(
+//       color: Colors.indigoAccent,
+//       height: height - 200  ,
+//       width: double.infinity,
+//       child: Center(
+//         child: Text("No apps added yet",style: TextStyle(color: Colors.grey,fontSize: 17),),
+//       ),
+//     );
+//   }
+// }
+

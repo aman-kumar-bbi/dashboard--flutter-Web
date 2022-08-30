@@ -15,12 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final TextEditingController appName = TextEditingController();
-
-  final TextEditingController publisherName = TextEditingController();
-
-  late String selectedRegion = "";
-
+  
   @override
   void initState() {
     widget.rebuild == true ? setState(() {}) : null;
@@ -32,14 +27,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     ButtonFunction().homeFloatingActionButton(
-        //         context, appName, publisherName, selectedRegion);
-        //   },
-        //   backgroundColor: Colors.red[600],
-        //   child: const Icon(Icons.add),
-        // ),
         appBar: AppBar(
           flexibleSpace: SizedBox(
             child: Row(
@@ -61,9 +48,6 @@ class _HomeState extends State<Home> {
                 builder: (BuildContext context, snapshot) {
                   if (snapshot.hasData == true) {
                     return IfHaveData(
-                      appName: appName,
-                      publisherName: publisherName,
-
                       appDetails: snapshot.data!,
                     );
                   } else if (snapshot.connectionState ==
@@ -71,13 +55,10 @@ class _HomeState extends State<Home> {
                     return const Center(
                         child: Center(child: CircularProgressIndicator()));
                   } else {
-                    
                     return Empty(
-                      appName: appName,
-                      publisherName: publisherName,
 
-                      // appDetails: snapshot.data!,
-                    );
+                        // appDetails: snapshot.data!,
+                        );
                   }
                 },
               ),

@@ -11,8 +11,10 @@ class CustomTextFeild extends StatefulWidget {
 }
 
 class _CustomTextFeildState extends State<CustomTextFeild> {
+
   @override
   Widget build(BuildContext context) {
+  print(widget.appName);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -20,6 +22,7 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
         child: Column(
           children: [
             TextFormField(
+              autofocus: true,
               controller: widget.appName,
               decoration: InputDecoration(
                 hintText: 'Name config',
@@ -28,10 +31,10 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
                   Icons.app_shortcut_outlined,
                   color: Colors.red.shade600,
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder:const OutlineInputBorder(
                   borderSide: BorderSide(),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder:const OutlineInputBorder(
                   borderSide: BorderSide(),
                 ),
               ),
