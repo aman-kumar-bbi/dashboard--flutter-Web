@@ -1,7 +1,7 @@
-import 'package:dashboard/dashboard/data/models/app_details_model.dart';
-import 'package:dashboard/dashboard/data/repository/FirebaseFunction.dart';
-import 'package:dashboard/dashboard/presentation/screen/add_app_screen.dart';
-import 'package:dashboard/dashboard/presentation/screen/home.dart';
+import 'package:dashboard/features/dashboard/data/models/app_details_model.dart';
+import 'package:dashboard/features/dashboard/data/repository/FirebaseFunction.dart';
+import 'package:dashboard/features/dashboard/presentation/screen/add_app_screen.dart';
+import 'package:dashboard/features/dashboard/presentation/screen/home.dart';
 import 'package:flutter/material.dart';
 
 class ButtonFunction {

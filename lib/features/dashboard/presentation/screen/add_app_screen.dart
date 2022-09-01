@@ -1,9 +1,9 @@
-import 'package:dashboard/dashboard/data/models/app_details_model.dart';
-import 'package:dashboard/dashboard/data/repository/FirebaseFunction.dart';
-import 'package:dashboard/dashboard/presentation/screen/home.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/check_boxes.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/custom_textfeild.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/new_custom_save_and_delete_button.dart';
+import 'package:dashboard/features/dashboard/data/models/app_details_model.dart';
+import 'package:dashboard/features/dashboard/data/repository/FirebaseFunction.dart';
+import 'package:dashboard/features/dashboard/presentation/screen/home.dart';
+import 'package:dashboard/features/dashboard/presentation/widgets/constant/check_boxes.dart';
+import 'package:dashboard/features/dashboard/presentation/widgets/constant/custom_textfeild.dart';
+import 'package:dashboard/features/dashboard/presentation/widgets/constant/new_custom_save_and_delete_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/useCases/button_function.dart';

@@ -1,12 +1,12 @@
 
-import 'package:dashboard/dashboard/presentation/screen/login_page.dart';
-import 'package:dashboard/dashboard/presentation/screen/wrapper.dart';
+import 'package:dashboard/features/dashboard/presentation/screen/login_page.dart';
+import 'package:dashboard/features/dashboard/presentation/screen/wrapper.dart';
 import 'package:dashboard/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard/data/repository/FirebaseFunction.dart';
-import 'dashboard/presentation/screen/home.dart';
+import 'features/dashboard/data/repository/FirebaseFunction.dart';
+import 'features/dashboard/presentation/screen/home.dart';
 
 Future main()async{
   WidgetsFlutterBinding.ensureInitialized();

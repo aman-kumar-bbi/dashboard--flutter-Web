@@ -1,10 +1,7 @@
-import 'package:dashboard/dashboard/data/repository/FirebaseFunction.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/if_data_is_empty.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/if_have_data.dart';
-import 'package:dashboard/dashboard/presentation/widgets/constant/logo_and_name.dart';
+import 'package:dashboard/features/dashboard/data/repository/FirebaseFunction.dart';
+import 'package:dashboard/features/dashboard/presentation/widgets/constant/if_have_data.dart';
+import 'package:dashboard/features/dashboard/presentation/widgets/constant/logo_and_name.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/useCases/button_function.dart';
 
 class Home extends StatefulWidget {
   bool? rebuild = false;
@@ -40,7 +37,7 @@ class _HomeState extends State<Home> {
           actions: [
             IconButton(
                 onPressed: () async {
-                  await FirebaseFunctions().signOut();
+                  await FirebaseFunctions().signOut(context);
                 },
                 icon: const Icon(Icons.logout_outlined))
           ],
