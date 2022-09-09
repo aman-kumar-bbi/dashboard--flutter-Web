@@ -1,11 +1,9 @@
-import 'dart:convert';
 
 import 'package:dashboard/features/dashboard/data/models/app_details_model.dart';
 import 'package:dashboard/features/dashboard/presentation/screen/home.dart';
 import 'package:dashboard/features/dashboard/presentation/screen/login_page.dart';
-import 'package:dashboard/features/dashboard/presentation/screen/wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +31,7 @@ class FirebaseFunctions {
         .ref("bb_apps")
         .child(details.uid)
         .update(details.toJson());
+    return null;
   }
 
   Future<List<AppDetails>?> fetchData() async {
@@ -42,6 +41,7 @@ class FirebaseFunctions {
 
     final bbAppJson = event.snapshot.value;
     List<AppDetails>? listOfAppDetails;
+    print("bbAppJson $bbAppJson");
     if (bbAppJson is Map) {
       listOfAppDetails = bbAppJson.entries
           .map((e) => AppDetails.fromJson(e.key, e.value))
@@ -56,7 +56,7 @@ class FirebaseFunctions {
     String password,
   ) async {
     try {
-      print("email ${email.trim()}");
+
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email.trim(),
         password: password,

@@ -73,7 +73,10 @@ class _AddAppScreenState extends State<AddAppScreen> {
               SaveButton(
                 onPressed: () {
                   if (appNameTextEditingController.text == "" ||
-                      publishernameTextEditingController.text == "") {
+                      publishernameTextEditingController.text == "" ||
+                      androidTextEditingController.text.isEmpty &&
+                      iosTextEditingController.text.isEmpty &&
+                      webTextEditingController.text.isEmpty) {
                     const snackBar = SnackBar(
                       content: Text('Please fill the all details'),
                     );
@@ -100,13 +103,14 @@ class _AddAppScreenState extends State<AddAppScreen> {
                           publisherName:
                               publishernameTextEditingController.text,
                           region: widget.regionName,
-                          
                           platform: platforms),
                     );
                   }
                 },
               ),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               CancelButton(
                 onPressed: () => Navigator.pop(
                   context,
@@ -116,10 +120,11 @@ class _AddAppScreenState extends State<AddAppScreen> {
               DeleteButton(onPressed: () async {
                 await FirebaseFunctions().delFunction(widget.appDetails!.uid);
 
-              
-
                 Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => Home(rebuild: true,)),
+                    MaterialPageRoute(
+                        builder: (context) => Home(
+                              rebuild: true,
+                            )),
                     (Route route) => false);
               }),
             ],
