@@ -11,13 +11,11 @@ class CustomTextFeild extends StatefulWidget {
 }
 
 class _CustomTextFeildState extends State<CustomTextFeild> {
-
   @override
   Widget build(BuildContext context) {
-  print(widget.appName);
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Column(
           children: [
@@ -31,15 +29,14 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
                   Icons.app_shortcut_outlined,
                   color: Colors.red.shade600,
                 ),
-                focusedBorder:const OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(),
                 ),
-                enabledBorder:const OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(),
                 ),
               ),
             ),
-           
             const SizedBox(
               height: 10,
             ),
@@ -60,7 +57,6 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
                 ),
               ),
             ),
-          
           ],
         ),
       ),

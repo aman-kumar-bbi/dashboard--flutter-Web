@@ -12,7 +12,7 @@ class ButtonFunction {
   }
 
   homeFloatingActionButton(String buttonName, BuildContext context,
-      String region, AppDetails? appDetails) {
+      String region, AppDetails? appDetails,bool isShowDeleteButton) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -24,6 +24,7 @@ class ButtonFunction {
             buttonName: buttonName,
             appDetails: appDetails,
             regionName: region,
+            isShowDeleteButton: isShowDeleteButton,
           ),
         ),
       ),

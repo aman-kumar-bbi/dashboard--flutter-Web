@@ -12,12 +12,14 @@ class AddAppScreen extends StatefulWidget {
   String buttonName;
   AppDetails? appDetails;
   String regionName;
+  bool isShowDeleteButton;
 
   AddAppScreen(
       {super.key,
       required this.buttonName,
       required this.appDetails,
-      required this.regionName});
+      required this.regionName,
+      required this.isShowDeleteButton});
 
   @override
   State<AddAppScreen> createState() => _AddAppScreenState();
@@ -117,6 +119,7 @@ class _AddAppScreenState extends State<AddAppScreen> {
                 ),
               ),
               Expanded(child: Container()),
+              widget.isShowDeleteButton?
               DeleteButton(onPressed: () async {
                 await FirebaseFunctions().delFunction(widget.appDetails!.uid);
 
@@ -126,7 +129,7 @@ class _AddAppScreenState extends State<AddAppScreen> {
                               rebuild: true,
                             )),
                     (Route route) => false);
-              }),
+              }):SizedBox()
             ],
           ),
         ],

@@ -1,4 +1,3 @@
-
 import 'package:dashboard/features/dashboard/data/models/app_details_model.dart';
 import 'package:dashboard/features/dashboard/presentation/screen/home.dart';
 import 'package:dashboard/features/dashboard/presentation/screen/login_page.dart';
@@ -31,6 +30,7 @@ class FirebaseFunctions {
         .ref("bb_apps")
         .child(details.uid)
         .update(details.toJson());
+
     return null;
   }
 
@@ -41,7 +41,7 @@ class FirebaseFunctions {
 
     final bbAppJson = event.snapshot.value;
     List<AppDetails>? listOfAppDetails;
-    print("bbAppJson $bbAppJson");
+
     if (bbAppJson is Map) {
       listOfAppDetails = bbAppJson.entries
           .map((e) => AppDetails.fromJson(e.key, e.value))
@@ -56,7 +56,6 @@ class FirebaseFunctions {
     String password,
   ) async {
     try {
-
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email.trim(),
         password: password,
@@ -65,16 +64,15 @@ class FirebaseFunctions {
           context, MaterialPageRoute(builder: (context) => Home()));
     } catch (e) {
       var error = e.toString();
-      print("erroe is $error");
-      ScaffoldMessenger.of(context)
-          .showSnackBar( SnackBar(content: Text("$e")));
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$e")));
       print(e);
     }
   }
 
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => LoginPage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }
