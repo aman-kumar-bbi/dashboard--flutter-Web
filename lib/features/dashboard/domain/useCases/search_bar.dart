@@ -13,7 +13,7 @@ class SearchList with ChangeNotifier{
     List<AppDetails> wholeDataOfApp, String searchController) {
   final searchApp = wholeDataOfApp
       .where((element) =>
-          element.appName.toLowerCase().startsWith(searchController))
+          element.appName.toLowerCase().contains(searchController))
       .toList();
       print("searchApp $searchApp");
       notifyListeners();
