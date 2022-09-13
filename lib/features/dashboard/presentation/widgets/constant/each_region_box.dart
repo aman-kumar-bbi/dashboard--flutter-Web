@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
-import '../../data/models/app_details_model.dart';
-import '../../domain/useCases/button_function.dart';
-import '../../domain/useCases/search_bar.dart';
+import '../../../data/models/app_details_model.dart';
+import '../../../domain/useCases/button_function.dart';
+import '../../../domain/useCases/filter_data.dart';
+import '../../../domain/useCases/search_bar.dart';
 
 class EachRegionBox extends StatefulWidget {
   final BuildContext context;
@@ -14,13 +12,15 @@ class EachRegionBox extends StatefulWidget {
   List<AppDetails>? filteredList;
   List<AppDetails>? defultList;
 
+
   EachRegionBox(
       {required this.appLanguage,
       required this.context,
       required this.regionName,
       required this.searchController,
       required this.filteredList,
-      required this.defultList});
+      required this.defultList,
+      });
 
   @override
   State<EachRegionBox> createState() => _EachRegionBoxState();
@@ -28,8 +28,9 @@ class EachRegionBox extends StatefulWidget {
 
 class _EachRegionBoxState extends State<EachRegionBox> {
   @override
-  // List<AppDetails>? searchList = filteredList;
   Widget build(BuildContext context) {
+
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height - 72;
     return SizedBox(
@@ -88,12 +89,11 @@ class _EachRegionBoxState extends State<EachRegionBox> {
                     ),
                   ),
                 ),
-                widget.filteredList!.isNotEmpty
+                widget.filteredList?.length != null
                     ? Expanded(
                         child: ListView.builder(
                         itemCount: widget.filteredList!.length,
                         itemBuilder: (context, index) {
-                          print("filteredList listview ${widget.filteredList}");
                           return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Material(

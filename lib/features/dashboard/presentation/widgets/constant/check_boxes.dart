@@ -60,8 +60,8 @@ class _CheckBoxesState extends State<CheckBoxes> {
                       },
                       controller: widget.androidTextEditingController,
                       decoration: const InputDecoration(
-                        hintText: 'App store link',
-                        labelText: 'App store link',
+                        hintText: 'App store id',
+                        labelText: 'App store id',
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(),
                         ),
@@ -105,8 +105,8 @@ class _CheckBoxesState extends State<CheckBoxes> {
                       },
                       controller: widget.iosTextEditingController,
                       decoration: const InputDecoration(
-                        hintText: 'App store link',
-                        labelText: 'App store link',
+                        hintText: 'App store id',
+                        labelText: 'App store id',
                         focusedBorder:  OutlineInputBorder(
                           borderSide: BorderSide(),
                         ),
@@ -150,8 +150,8 @@ class _CheckBoxesState extends State<CheckBoxes> {
                       },
                       controller: widget.webTextEditingController,
                       decoration: const InputDecoration(
-                        hintText: 'App store link',
-                        labelText: 'App store link',
+                        hintText: 'App store id',
+                        labelText: 'App store id',
                         focusedBorder:  OutlineInputBorder(
                           borderSide: BorderSide(),
                         ),
