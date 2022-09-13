@@ -29,7 +29,7 @@ class EachRegionBox extends StatefulWidget {
 class _EachRegionBoxState extends State<EachRegionBox> {
   @override
   Widget build(BuildContext context) {
-
+ 
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height - 72;
